@@ -1,6 +1,7 @@
 //Create a new class named WebServiceConfiguration.java which will contain Spring Web services related beans configurations
 package com.example.producingwebservice.configuration;
 
+
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
