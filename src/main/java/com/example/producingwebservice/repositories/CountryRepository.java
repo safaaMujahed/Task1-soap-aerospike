@@ -2,6 +2,7 @@
 package com.example.producingwebservice.repositories;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +14,8 @@ import org.springframework.util.Assert;
 
 @Component
 public class CountryRepository {
-    private static final Map<String, Country> countries = new HashMap<>();
-
+//    private static final Map<String, Country> countries = new HashMap<>();
+      private static final ArrayList<Country> countries = new ArrayList<>();
     @PostConstruct
     public void initData() {
         Country spain = new Country();
@@ -23,7 +24,7 @@ public class CountryRepository {
         spain.setCurrency(Currency.EUR);
         spain.setPopulation(46704314);
 
-        countries.put(spain.getName(), spain);
+        countries.add(spain);
 
         Country poland = new Country();
         poland.setName("Poland");
@@ -31,7 +32,7 @@ public class CountryRepository {
         poland.setCurrency(Currency.PLN);
         poland.setPopulation(38186860);
 
-        countries.put(poland.getName(), poland);
+        countries.add(poland);
 
         Country uk = new Country();
         uk.setName("United Kingdom");
@@ -39,11 +40,16 @@ public class CountryRepository {
         uk.setCurrency(Currency.GBP);
         uk.setPopulation(63705000);
 
-        countries.put(uk.getName(), uk);
+        countries.add(uk);
     }
 
     public Country findCountry(String name) {
         Assert.notNull(name, "The country's name must not be null");
-        return countries.get(name);
+//        countries.forEach((key, value) -> System.out.println(key + ":" + value));
+        for (int i = 0; i < countries.size(); i++) {
+            if(countries.get(i).getName().equals(name))
+                return countries.get(i);
+        }
+        return null;
     }
 }

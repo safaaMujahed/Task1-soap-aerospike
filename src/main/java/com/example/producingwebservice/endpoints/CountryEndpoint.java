@@ -10,11 +10,13 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import java.util.logging.Logger;
+
 @Endpoint
 public class CountryEndpoint {
 //    private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
     private static final String NAMESPACE_URI = "http://demo.com";
-
+//    private static final Logger LOGGER = Logger.getLogger(CountryEndpoint.class.getName());
     private CountryRepository countryRepository;
 
     @Autowired
@@ -25,6 +27,7 @@ public class CountryEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
     @ResponsePayload
     public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
+//        LOGGER.info("try logger jjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
         GetCountryResponse response = new GetCountryResponse();
         response.setCountry(countryRepository.findCountry(request.getName()));
 
